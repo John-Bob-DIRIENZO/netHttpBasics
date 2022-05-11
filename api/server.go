@@ -12,11 +12,18 @@ type Item struct {
 	Name string    `json:"name"`
 }
 
+// Server
+// Le premier élément n'a pas de nom et c'est un pointeur vers
+// mon routeur, il aura automatiquement le nom du dernier élément de la chaine (ici Routeur)
+// et récupèrera toutes les méthodes, car il est passé par référence.
 type Server struct {
 	*mux.Router
 	shoppingItems []Item
 }
 
+// NewServer
+// Comme le nom commence par une majuscule, il sera exporté et disponible en
+// dehors de mon package
 func NewServer() *Server {
 	// C'est exactement le même délire que $s = new Server en PHP
 	// Du coup, le retour est du type *Server, d'où la suite
